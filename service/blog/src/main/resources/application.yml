@@ -1,0 +1,17 @@
+# 配置中心blog-service.yml的同名配置会覆盖以下配置
+spring:
+  application:
+    name: service-blog
+  profiles:
+    active: dev
+#  cloud:
+#    sentinel:
+#      transport:
+#        dashboard: 127.0.0.1:8080
+server:
+  port: 9002
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

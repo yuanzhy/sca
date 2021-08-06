@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: component-gateway
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        enabled: true
+        server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+        - id: test-service #id必须要唯一
+          uri: lb://test-service # 任意一个微服务工程
+          predicates:
+            #当前请求的时间必须在早上7点到 晚上11点 http://localhost:8888/test
+            #才会被转发 到http://test-service/test
+            - test-service: 上午7:00,下午11:00
+      discovery:
+        locator:
+          enabled: true
+server:
+  port: 8888
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      #打开端点详情
+      show-details: always

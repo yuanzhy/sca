@@ -1,0 +1,13 @@
+# 配置中心blog-service.yml的同名配置会覆盖以下配置
+spring:
+  application:
+    name: service-user
+  profiles:
+    active: dev
+server:
+  port: 9001
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
