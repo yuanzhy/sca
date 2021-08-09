@@ -25,6 +25,7 @@ public class BlogApplication {
 	 */
 	@Bean
 	@LoadBalanced
+//	@SentinelRestTemplate(fallback = "userServiceFallback", fallbackClass = UserServiceDemo.class)
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}

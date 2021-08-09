@@ -22,6 +22,7 @@ public class DemoController {
             logger.info("--header--{}: {}", name, request.getHeader(name));
         }
         logger.info("call user-service, TraceId={},SpanId={},", request.getHeader("X-B3-TraceId"), request.getHeader("X-B3-SpanId"));
+//        throw new RuntimeException("hehe");
         return "this is user-service";
     }
 }

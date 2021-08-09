@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * feign.hystrix.enabled=true 一定要配置这个，feign的熔断才会生效
  */
 @FeignClient(name="service-user", fallback = UserFeignFallbackDemo.class)
+//@FeignClient(name="service-user", fallbackFactory = UserFeignFallbackDemo.class)
 public interface UserFeignClientDemo {
 
     @GetMapping(value="test")

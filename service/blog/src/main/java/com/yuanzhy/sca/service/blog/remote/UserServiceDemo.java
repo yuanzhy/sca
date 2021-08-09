@@ -18,7 +18,7 @@ public class UserServiceDemo {
     private RestTemplate restTemplate;
 
 //    @HystrixCommand(fallbackMethod = "userServiceFallback")
-    @SentinelResource( value = "SentinelTest",fallback = "userServiceFallback")
+    @SentinelResource( value = "SentinelTest", fallback = "userServiceFallback", fallbackClass = UserServiceDemo.class)
     public String userService() {
         return restTemplate.getForObject("http://service-user/test", String.class);
     }
@@ -46,8 +46,8 @@ public class UserServiceDemo {
      * 该方法也可能通过网络数据库等请求而发成异常，也可以添加@HystrixCommand 并实现二级fallback函数，俗称服务降级
      * @return
      */
-    private String userServiceFallback(Throwable e) {
+    public static String userServiceFallback(Throwable e) {
         System.out.println("正常调用发生了异常: " + e.fillInStackTrace());
-        return "service user is not available, hystrix take effect";
+        return "Service user is not available, Sentinel take effect";
     }
 }

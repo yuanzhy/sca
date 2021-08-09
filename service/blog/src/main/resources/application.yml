@@ -4,8 +4,12 @@ spring:
     name: service-blog
   profiles:
     active: dev
-#  cloud:
-#    sentinel:
+  cloud:
+    sentinel:
+      scg:
+        fallback:
+          mode: response
+          response-body: 'Sentinel CircuitBreaker on Gateway'
 #      transport:
 #        dashboard: 127.0.0.1:8080
 server:
@@ -15,3 +19,6 @@ management:
     web:
       exposure:
         include: '*'
+#feign:
+#  sentinel:
+#    enabled: true
